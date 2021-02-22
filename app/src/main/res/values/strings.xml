@@ -44,6 +44,14 @@
     <string name="marca">MARCA</string>
     <string name="modelo">MODELO</string>
     <string name="anio">ANIO</string>
+    <string name="puertas">PUERTAS</string>
+    <string name="maletas">MALETAS</string>
+    <string name="pasajeros">PASAJEROS</string>
+    <string name="transmision">TRANSMISION</string>
+    <string name="traccion">TRACCION</string>
+    <string name="sunroof">¿Dispone de techo corredizo?</string>
+    <string name="aire">¿Dispone de aire acondicionado?</string>
+    <string name="gps">GPS</string>
 
 
 </resources>

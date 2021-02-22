@@ -210,7 +210,7 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/regresarButton"
+                    android:id="@+id/btnRegresarLogin"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -219,7 +219,7 @@
                     style="@style/Widget.MaterialComponents.Button.TextButton"/>
 
                 <Button
-                    android:id="@+id/registrarButton"
+                    android:id="@+id/btnUsuarioRegistro"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"

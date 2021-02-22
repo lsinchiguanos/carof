@@ -73,7 +73,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/btnLogin"
+        android:id="@+id/btnInicioSesion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
@@ -87,7 +87,7 @@
         android:onClick="loginFirebase"/>
 
     <Button
-        android:id="@+id/regresarButton"
+        android:id="@+id/btnFormularioRegistro"
         style="@style/Widget.MaterialComponents.Button.TextButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
