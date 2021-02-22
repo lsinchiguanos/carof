@@ -57,7 +57,6 @@ public class LoginActivity extends AppCompatActivity {
                 Toast.makeText(LoginActivity.this, "Login correcto", Toast.LENGTH_SHORT).show();
                 intent = new Intent(LoginActivity.this, MainActivity.class);
                 intent.putExtra("email", task.getResult().getUser().getEmail());
-                intent.putExtra("uid", task.getResult().getUser().getUid());
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                 startActivity(intent);

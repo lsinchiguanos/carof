@@ -25,7 +25,7 @@ public class MenuFragment extends Fragment {
 
     View view;
     Activity activity;
-    CardView cardViewVehiculo, cardViewContrato, cardViewHistorial, cardViewPublicaciones, cardViewInformacion, cardViewMonitoreo;
+    CardView cardViewVehiculo, cardViewContrato, cardViewHistorial, cardViewPublicaciones, cardViewInformacion, cardViewMonitoreo, cardViewGps, cardViewSignUp;
     IComunicacionFragments iComunicacionFragments;
     OnFragmentInteractionListener onFragmentInteractionListener;
 
@@ -91,6 +91,12 @@ public class MenuFragment extends Fragment {
 
         cardViewPublicaciones = view.findViewById(R.id.cardPublicaciones);
         cardViewPublicaciones.setOnClickListener(v -> iComunicacionFragments.publicacion());
+
+        cardViewGps = view.findViewById(R.id.cardGPS);
+        cardViewGps.setOnClickListener(v -> iComunicacionFragments.dispositivoGps());
+
+        cardViewSignUp = view.findViewById(R.id.cardSignUp);
+        cardViewSignUp.setOnClickListener(v -> iComunicacionFragments.signUp());
 
         return view;
     }

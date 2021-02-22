@@ -3,22 +3,32 @@ package uteq.student.project.carof;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import uteq.student.project.carof.activities.LoginActivity;
+import uteq.student.project.carof.activities.VehiculoActivity;
 import uteq.student.project.carof.fragments.MenuFragment;
 import uteq.student.project.carof.interfaces.IComunicacionFragments;
 
 public class MainActivity extends AppCompatActivity implements IComunicacionFragments, MenuFragment.OnFragmentInteractionListener {
 
-    Fragment fragmentMenu;
+    private Fragment fragmentMenu;
+    private Intent intent;
+    private FirebaseAuth firebaseAuth;
+    private FirebaseFirestore db;
+    private String emailUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        String a = getIntent().getExtras().getString("email");
-        String b = getIntent().getExtras().getString("uid");
+        firebaseAuth = FirebaseAuth.getInstance();
+        emailUser = getIntent().getExtras().getString("email");
         fragmentMenu = new MenuFragment();
         getSupportFragmentManager().beginTransaction().replace(R.id.contentFragment, fragmentMenu).commit();
     }
@@ -30,7 +40,8 @@ public class MainActivity extends AppCompatActivity implements IComunicacionFrag
 
     @Override
     public void vehiculo() {
-
+        intent = new Intent(this, VehiculoActivity.class);
+        startActivity(intent);
     }
 
     @Override
@@ -56,5 +67,16 @@ public class MainActivity extends AppCompatActivity implements IComunicacionFrag
     @Override
     public void informacion() {
 
+    }
+
+    @Override
+    public void dispositivoGps() {
+
+    }
+
+    @Override
+    public void signUp() {
+        FirebaseAuth.getInstance().signOut();
+        onBackPressed();
     }
 }

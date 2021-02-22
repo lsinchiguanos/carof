@@ -52,6 +52,7 @@
     <string name="sunroof">¿Dispone de techo corredizo?</string>
     <string name="aire">¿Dispone de aire acondicionado?</string>
     <string name="gps">GPS</string>
+    <string name="cerrar_sesion">CERRAR SESION</string>
 
 
 </resources>

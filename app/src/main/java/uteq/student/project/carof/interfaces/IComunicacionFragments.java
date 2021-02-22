@@ -14,4 +14,8 @@ public interface IComunicacionFragments {
 
     void informacion();
 
+    void dispositivoGps();
+
+    void signUp();
+
 }
