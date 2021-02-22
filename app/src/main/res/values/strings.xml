@@ -1,0 +1,49 @@
+<resources>
+    <string name="app_name">CAR RENTAL SYSTEM</string>
+    <string name="app_slogan">YOUR BEST ALLY</string>
+
+    <string name="title_activity_login">Login</string>
+
+    <string name="prompt_user_name">User name</string>
+    <string name="prompt_password">Password</string>
+
+    <string name="action_sign_up">Sign up</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+
+    <string name="welcome">"Welcome !"</string>
+
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="titulo">Bienvenido,</string>
+    <string name="descripcion">descripcion</string>
+    <string name="encabezado">Complete el formulario para empezar</string>
+    <string name="tipoIdentificacion">Tipo</string>
+    <string name="identificacion">Identificación</string>
+    <string name="apellidoPaterno">Apellido paterno</string>
+    <string name="apellidoMaterno">Apellido materno</string>
+    <string name="nombre">Nombres</string>
+    <string name="fechaNacimiento">Fecha nacimiento</string>
+    <string name="celular">Celular</string>
+    <string name="regresar">Regresar</string>
+    <string name="registrarButton">Registrar</string>
+    <string name="seleccione">Seleccione</string>
+    <string name="email">Email</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="vehiculoCardViewText">VEHICULO</string>
+    <string name="contratoCardViewText">CONTRATOS</string>
+    <string name="monitoreoCardViewText">MONITOREO</string>
+    <string name="historialCardViewText">HISTORIAL</string>
+    <string name="publicacionesCardViewText">PUBLICACIONES</string>
+    <string name="acercaDe">ACERCA DE</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="placa">PLACA</string>
+    <string name="marca">MARCA</string>
+    <string name="modelo">MODELO</string>
+    <string name="anio">ANIO</string>
+
+
+</resources>

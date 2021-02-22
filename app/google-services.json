@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "373508134641",
+    "project_id": "proyectoviii-30bbb",
+    "storage_bucket": "proyectoviii-30bbb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:373508134641:android:8065b18f95876f0f183b50",
+        "android_client_info": {
+          "package_name": "com.example.pi_viii"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "373508134641-153qrvosvhvbak2u0f01itjasraue4js.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB0pKUYl05IL3o4_9nlKjFhrHvkvs5sM7U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "373508134641-153qrvosvhvbak2u0f01itjasraue4js.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:373508134641:android:afe5780bf9f7a471183b50",
+        "android_client_info": {
+          "package_name": "uteq.student.project.carof"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "373508134641-153qrvosvhvbak2u0f01itjasraue4js.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB0pKUYl05IL3o4_9nlKjFhrHvkvs5sM7U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "373508134641-153qrvosvhvbak2u0f01itjasraue4js.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
