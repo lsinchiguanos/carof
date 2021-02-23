@@ -54,5 +54,6 @@
     <string name="gps">GPS</string>
     <string name="cerrar_sesion">CERRAR SESION</string>
 
+    <string name="preference">uteq.student.project.carof.PREFERENCE_FILE_KEY</string>
 
 </resources>
