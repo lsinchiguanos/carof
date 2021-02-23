@@ -1,6 +1,8 @@
 package uteq.student.project.carof.activities;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -23,6 +25,9 @@ public class LoginActivity extends AppCompatActivity {
     private DuenioModel duenioModel;
     private Intent intent;
     private FirebaseAuth firebaseAuth;
+    private SharedPreferences preferences;
+    private SharedPreferences.Editor editor;
+    private String email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +36,7 @@ public class LoginActivity extends AppCompatActivity {
         duenioModel = new DuenioModel();
         settingcontrollers();
         firebaseAuth = FirebaseAuth.getInstance();
+        session();
     }
 
     private void settingcontrollers(){
@@ -64,5 +70,24 @@ public class LoginActivity extends AppCompatActivity {
                 Toast.makeText(LoginActivity.this, "Error al iniciar sesión", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private void session(){
+        preferences = getSharedPreferences(getString(R.string.preference), Context.MODE_PRIVATE);
+        email = preferences.getString("email", null);
+        if (email != null) {
+            LoginActivity.this.setVisible(false);
+            intent = new Intent(LoginActivity.this, MainActivity.class);
+            intent.putExtra("email", email);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+            startActivity(intent);
+        }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        LoginActivity.this.setVisible(true);
     }
 }

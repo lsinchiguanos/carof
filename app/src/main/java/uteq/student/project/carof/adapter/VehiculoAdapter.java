@@ -31,7 +31,7 @@ public class VehiculoAdapter extends FirestoreRecyclerAdapter<VehiculoModel, Veh
         holder.anio.setText(model.getAnio());
         holder.imageView.setOnClickListener((view) ->{
             AppCompatActivity activity = (AppCompatActivity)view.getContext();
-            activity.getSupportFragmentManager().beginTransaction().replace(R.id.wrapper,new VehiculoDesFragment(model.getPlaca(),model.getMarca(),model.getModelo(),model.getAnio())).addToBackStack(null).commit();
+            //activity.getSupportFragmentManager().beginTransaction().replace(R.id.wrapper,new VehiculoDesFragment(model.getPlaca(),model.getMarca(),model.getModelo(),model.getAnio())).addToBackStack(null).commit();
         });
     }
 
