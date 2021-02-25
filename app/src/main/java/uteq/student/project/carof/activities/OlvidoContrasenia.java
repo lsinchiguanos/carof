@@ -34,6 +34,7 @@ public class OlvidoContrasenia extends AppCompatActivity {
             }
         });
     }
+
     public void validate() {
         String email = emaileditText.getText().toString().trim();
         if (email.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
@@ -42,6 +43,7 @@ public class OlvidoContrasenia extends AppCompatActivity {
         }
         sendEmail(email);
     }
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();
@@ -50,24 +52,21 @@ public class OlvidoContrasenia extends AppCompatActivity {
         finish();
 
     }
-    public  void sendEmail(String email)
-    {
+
+    public void sendEmail(String email) {
         FirebaseAuth auth = FirebaseAuth.getInstance();
         String emailAddress = email;
         auth.sendPasswordResetEmail(emailAddress)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        if(task.isSuccessful())
-                        {
-                            Toast.makeText(OlvidoContrasenia.this,"El correo fue enviado",Toast.LENGTH_SHORT).show();
+                        if (task.isSuccessful()) {
+                            Toast.makeText(OlvidoContrasenia.this, "El correo fue enviado", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(OlvidoContrasenia.this, LoginActivity.class);
                             startActivity(intent);
                             finish();
-                        }
-                        else
-                        {
-                            Toast.makeText(OlvidoContrasenia.this,"Correo invalido",Toast.LENGTH_SHORT);
+                        } else {
+                            Toast.makeText(OlvidoContrasenia.this, "Correo invalido", Toast.LENGTH_SHORT);
                         }
                     }
                 });
