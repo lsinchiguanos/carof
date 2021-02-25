@@ -38,6 +38,13 @@ public class LoginActivity extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         session();
     }
+    public void OlvidoContrasenia(View v)
+    {
+        Intent intent = new Intent(this, OlvidoContrasenia.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+        startActivity(intent);
+    }
 
     private void settingcontrollers(){
         userName = findViewById(R.id.textUserName);
