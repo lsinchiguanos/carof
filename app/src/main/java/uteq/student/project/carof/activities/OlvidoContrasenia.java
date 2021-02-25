@@ -18,23 +18,22 @@ import com.google.firebase.auth.FirebaseAuth;
 import uteq.student.project.carof.R;
 
 public class OlvidoContrasenia extends AppCompatActivity {
-    MaterialButton recuperar;
+    MaterialButton recuperarC;
     TextInputEditText emaileditText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_olvido_contrasenia);
-        recuperar = findViewById(R.id.btnRecuperarC);
+        recuperarC = findViewById(R.id.btnRecuperarC);
         emaileditText = findViewById(R.id.Reemail);
-        recuperar.setOnClickListener(new View.OnClickListener() {
+        recuperarC.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 validate();
             }
         });
     }
-
     public void validate() {
         String email = emaileditText.getText().toString().trim();
         if (email.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
