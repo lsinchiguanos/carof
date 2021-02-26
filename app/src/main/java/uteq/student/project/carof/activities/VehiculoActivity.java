@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 import uteq.student.project.carof.R;
-import uteq.student.project.carof.fragments.VehiculosFragment;
 import uteq.student.project.carof.fragments.VehiculosFragmentv1;
 
 public class VehiculoActivity extends AppCompatActivity {

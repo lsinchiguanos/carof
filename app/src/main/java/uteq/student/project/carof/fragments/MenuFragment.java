@@ -28,7 +28,7 @@ public class MenuFragment extends Fragment {
     CardView cardViewVehiculo, cardViewContrato, cardViewHistorial, cardViewPublicaciones, cardViewInformacion, cardViewMonitoreo, cardViewGps, cardViewSignUp;
     IComunicacionFragments iComunicacionFragments;
     OnFragmentInteractionListener onFragmentInteractionListener;
-
+    Bundle b = new Bundle();
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -74,8 +74,9 @@ public class MenuFragment extends Fragment {
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_menu, container, false);
 
+
         cardViewVehiculo = view.findViewById(R.id.vehiculoCarView);
-        cardViewVehiculo.setOnClickListener(v -> iComunicacionFragments.vehiculo());
+        cardViewVehiculo.setOnClickListener(v -> iComunicacionFragments.vehiculo(b.getString("id_duenio")));
 
         cardViewContrato = view.findViewById(R.id.contratosCardView);
         cardViewContrato.setOnClickListener(v -> iComunicacionFragments.contratos());

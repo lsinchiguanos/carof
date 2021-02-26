@@ -28,6 +28,7 @@ public class LoginActivity extends AppCompatActivity {
     private SharedPreferences preferences;
     private SharedPreferences.Editor editor;
     private String email;
+    private String id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +71,8 @@ public class LoginActivity extends AppCompatActivity {
                 Toast.makeText(LoginActivity.this, "Login correcto", Toast.LENGTH_SHORT).show();
                 intent = new Intent(LoginActivity.this, MainActivity.class);
                 intent.putExtra("email", task.getResult().getUser().getEmail());
+                intent.putExtra("id_duenio",task.getResult().getUser().getProviderId());
+                Toast.makeText(LoginActivity.this,task.getResult().getUser().getUid(),Toast.LENGTH_LONG).show();
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                 startActivity(intent);
@@ -82,6 +85,7 @@ public class LoginActivity extends AppCompatActivity {
     private void session(){
         preferences = getSharedPreferences(getString(R.string.preference), Context.MODE_PRIVATE);
         email = preferences.getString("email", null);
+
         if (email != null) {
             LoginActivity.this.setVisible(false);
             intent = new Intent(LoginActivity.this, MainActivity.class);

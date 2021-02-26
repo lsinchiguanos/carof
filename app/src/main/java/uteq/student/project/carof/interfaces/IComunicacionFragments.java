@@ -2,7 +2,7 @@ package uteq.student.project.carof.interfaces;
 
 public interface IComunicacionFragments {
 
-    void vehiculo();
+    void vehiculo(String id);
 
     void contratos();
 

@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -41,7 +42,8 @@ public class VehiculosFragmentv1 extends Fragment {
     private FirestorePagingAdapter adapter;
     Query query;
     PagedList.Config config;
-
+    String id_duenio;
+    Bundle b = new Bundle();
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -69,6 +71,7 @@ public class VehiculosFragmentv1 extends Fragment {
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
+
         fragment.setArguments(args);
         return fragment;
     }
@@ -79,6 +82,7 @@ public class VehiculosFragmentv1 extends Fragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
+
         }
     }
 
@@ -91,8 +95,11 @@ public class VehiculosFragmentv1 extends Fragment {
         firebaseFirestore = FirebaseFirestore.getInstance();
         mFirestore_list = view.findViewById(R.id.firestore_list);
 
+        id_duenio = b.getString("id_duenio");
+        //whereEqualTo("duenio",id_duenio)
         //Query
-        query = firebaseFirestore.collection("vehiculo");
+        id_duenio = "1205388547";
+        query = firebaseFirestore.collection("vehiculo").whereEqualTo("duenio",id_duenio);
 
         // Search how like in sql
         // orderBy("name").startAt("Scar")
