@@ -2,7 +2,9 @@ package uteq.student.project.carof.fragments;
 
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -95,7 +97,6 @@ public class VehiculosFragmentv1 extends Fragment {
     }
 
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -118,10 +119,15 @@ public class VehiculosFragmentv1 extends Fragment {
                 iComunicacionFragments.addvehiculo(id_duenio);
             }
         });
+        loadAutos();
+        return view;
+    }
 
+
+    void loadAutos(){
         query = firebaseFirestore.collection("vehiculo").whereEqualTo("duenio",id_duenio);
 
-         config = new PagedList.Config.Builder()
+        config = new PagedList.Config.Builder()
                 .setInitialLoadSizeHint(7)
                 .setPageSize(2)
                 .build();
@@ -164,6 +170,15 @@ public class VehiculosFragmentv1 extends Fragment {
                         iComunicacionFragments.editvehiculo(model.getId_vehiculo(),id_duenio);
                     }
                 });
+
+                holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View v) {
+                        dialogoAcceso(model.getId_vehiculo()).show();
+                        return true;
+                    }
+                });
+
                 //holder.imgUrl.setText(model.getImage());
             }
             @Override
@@ -191,7 +206,27 @@ public class VehiculosFragmentv1 extends Fragment {
         mFirestore_list.setHasFixedSize(true);
         mFirestore_list.setLayoutManager(new LinearLayoutManager(getContext()));
         mFirestore_list.setAdapter(adapter);
-        return view;
+    }
+
+    public AlertDialog dialogoAcceso(String id){
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+
+        builder.setTitle("Eliminar Auto").
+                setMessage("Desea eliminar el auto ?").
+                setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        }).setPositiveButton("Eliminar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                firebaseFirestore.collection("vehiculo").document(id).delete();
+                loadAutos();
+            }
+        });
+
+        return builder.create();
     }
 
     public interface OnFragmentInteractionListener {
