@@ -5,11 +5,32 @@ import com.google.firebase.firestore.FieldValue;
 
 public class VehiculoModel {
 
+    private String id_vehiculo;
     private String placa;
     private String marca;
     private String modelo;
     private String url;
     private String anio;
+
+    public VehiculoModel(String id_vehiculo, String placa, String marca, String modelo, String url, String anio) {
+        this.id_vehiculo = id_vehiculo;
+        this.placa = placa;
+        this.marca = marca;
+        this.modelo = modelo;
+        this.url = url;
+        this.anio = anio;
+    }
+    public VehiculoModel() {
+
+    }
+
+    public String getId_vehiculo() {
+        return id_vehiculo;
+    }
+
+    public void setId_vehiculo(String id_vehiculo) {
+        this.id_vehiculo = id_vehiculo;
+    }
 
     public String getPlaca() {
         return placa;
@@ -43,14 +64,6 @@ public class VehiculoModel {
         this.url = url;
     }
 
-    public VehiculoModel(String placa, String marca, String modelo, String url, String anio) {
-        this.placa = placa;
-        this.marca = marca;
-        this.modelo = modelo;
-        this.url = url;
-        this.anio = anio;
-    }
-
     public String getAnio() {
         return anio;
     }
@@ -58,8 +71,4 @@ public class VehiculoModel {
     public void setAnio(String anio) {
         this.anio = anio;
     }
-
-    public VehiculoModel() {
-    }
-
 }

@@ -74,9 +74,8 @@ public class MenuFragment extends Fragment {
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_menu, container, false);
 
-
         cardViewVehiculo = view.findViewById(R.id.vehiculoCarView);
-        cardViewVehiculo.setOnClickListener(v -> iComunicacionFragments.vehiculo(b.getString("id_duenio")));
+        cardViewVehiculo.setOnClickListener(v -> iComunicacionFragments.vehiculo("1205388547"));
 
         cardViewContrato = view.findViewById(R.id.contratosCardView);
         cardViewContrato.setOnClickListener(v -> iComunicacionFragments.contratos());
@@ -84,17 +83,11 @@ public class MenuFragment extends Fragment {
         cardViewHistorial = view.findViewById(R.id.historialCardView);
         cardViewHistorial.setOnClickListener(v -> iComunicacionFragments.historial());
 
-        cardViewInformacion = view.findViewById(R.id.cardInformacion);
-        cardViewInformacion.setOnClickListener(v -> iComunicacionFragments.informacion());
-
         cardViewMonitoreo = view.findViewById(R.id.monitoreoCardView);
         cardViewMonitoreo.setOnClickListener(v -> iComunicacionFragments.monitoreo());
 
         cardViewPublicaciones = view.findViewById(R.id.cardPublicaciones);
         cardViewPublicaciones.setOnClickListener(v -> iComunicacionFragments.publicacion());
-
-        cardViewGps = view.findViewById(R.id.cardGPS);
-        cardViewGps.setOnClickListener(v -> iComunicacionFragments.dispositivoGps());
 
         cardViewSignUp = view.findViewById(R.id.cardSignUp);
         cardViewSignUp.setOnClickListener(v -> iComunicacionFragments.signUp());

@@ -22,7 +22,9 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="-8dp"
+        android:layout_marginEnd="-1dp"
+        android:layout_marginRight="-1dp"
+        android:layout_marginBottom="-5dp"
         app:fab_addButtonColorNormal="@color/purple_500"
         app:fab_addButtonColorPressed="@color/colorPrimaryDark">
 

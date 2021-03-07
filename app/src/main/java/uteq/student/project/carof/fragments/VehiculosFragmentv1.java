@@ -1,6 +1,9 @@
 package uteq.student.project.carof.fragments;
 
 
+import android.app.Activity;
+import android.content.Context;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -23,11 +26,12 @@ import com.firebase.ui.firestore.SnapshotParser;
 import com.firebase.ui.firestore.paging.FirestorePagingAdapter;
 import com.firebase.ui.firestore.paging.FirestorePagingOptions;
 import com.firebase.ui.firestore.paging.LoadingState;
+import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
-
 import uteq.student.project.carof.R;
+import uteq.student.project.carof.interfaces.IComunicacionFragments;
 import uteq.student.project.carof.models.VehiculoModel;
 
 /**
@@ -37,6 +41,7 @@ import uteq.student.project.carof.models.VehiculoModel;
  */
 public class VehiculosFragmentv1 extends Fragment {
 
+    Activity activity;
     private RecyclerView mFirestore_list;
     private FirebaseFirestore firebaseFirestore;
     private FirestorePagingAdapter adapter;
@@ -44,6 +49,10 @@ public class VehiculosFragmentv1 extends Fragment {
     PagedList.Config config;
     String id_duenio;
     Bundle b = new Bundle();
+    FloatingActionButton btnAdd;
+    IComunicacionFragments iComunicacionFragments;
+    MenuFragment.OnFragmentInteractionListener onFragmentInteractionListener;
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -82,9 +91,10 @@ public class VehiculosFragmentv1 extends Fragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
-
         }
     }
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -95,14 +105,22 @@ public class VehiculosFragmentv1 extends Fragment {
         firebaseFirestore = FirebaseFirestore.getInstance();
         mFirestore_list = view.findViewById(R.id.firestore_list);
 
-        id_duenio = b.getString("id_duenio");
-        //whereEqualTo("duenio",id_duenio)
-        //Query
-        id_duenio = "1205388547";
+        btnAdd = view.findViewById(R.id.fbAddCar);
+
+
+
+        id_duenio = this.getArguments().getString("id_duenio");
+
+        btnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //
+                iComunicacionFragments.addvehiculo(id_duenio);
+            }
+        });
+
         query = firebaseFirestore.collection("vehiculo").whereEqualTo("duenio",id_duenio);
 
-        // Search how like in sql
-        // orderBy("name").startAt("Scar")
          config = new PagedList.Config.Builder()
                 .setInitialLoadSizeHint(7)
                 .setPageSize(2)
@@ -116,7 +134,7 @@ public class VehiculosFragmentv1 extends Fragment {
                     public VehiculoModel parseSnapshot(@NonNull DocumentSnapshot snapshot) {
                         VehiculoModel cardsModel = snapshot.toObject(VehiculoModel.class);
                         String item_id = snapshot.getId();
-                        //cardsModel.setItem_id(item_id);
+                        cardsModel.setId_vehiculo(item_id);
                         return cardsModel;
                     }
                 }).build();
@@ -139,6 +157,13 @@ public class VehiculosFragmentv1 extends Fragment {
                 Glide.with(VehiculosFragmentv1.this).load(model.getUrl())
                         .diskCacheStrategy(DiskCacheStrategy.ALL)
                         .into(holder.imgUrl);
+                holder.itemView.setOnClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(View v) {
+                        //Toast.makeText(getContext(), model.getId_vehiculo(), Toast.LENGTH_SHORT).show();
+                        iComunicacionFragments.editvehiculo(model.getId_vehiculo(),id_duenio);
+                    }
+                });
                 //holder.imgUrl.setText(model.getImage());
             }
             @Override
@@ -163,18 +188,22 @@ public class VehiculosFragmentv1 extends Fragment {
                 }
             }
         };
-
         mFirestore_list.setHasFixedSize(true);
         mFirestore_list.setLayoutManager(new LinearLayoutManager(getContext()));
         mFirestore_list.setAdapter(adapter);
-
         return view;
     }
+
+    public interface OnFragmentInteractionListener {
+        void onFragmentInteraction(Uri uri);
+    }
+
 
     private class CardsViewHolder extends RecyclerView.ViewHolder{
 
         private TextView placa,marca,modelo,anio;
         private ImageView imgUrl;
+
         public CardsViewHolder(@NonNull View itemView) {
             super(itemView);
             placa = itemView.findViewById(R.id.placa);
@@ -185,4 +214,19 @@ public class VehiculosFragmentv1 extends Fragment {
         }
     }
 
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+
+        if (context instanceof Activity) {
+            activity= (Activity) context;
+            iComunicacionFragments= (IComunicacionFragments) activity;
+        }
+        if (context instanceof MenuFragment.OnFragmentInteractionListener) {
+            onFragmentInteractionListener = (MenuFragment.OnFragmentInteractionListener) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement OnFragmentInteractionListener");
+        }
+    }
 }

@@ -16,13 +16,15 @@
             android:orientation="vertical"
             android:padding="15dp"
             tools:ignore="UseCompoundDrawables">
+
             <ImageView
+                android:id="@+id/imgAuto"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_gravity="left"
                 android:src="@drawable/ic_baseline_directions_car_24"
-                android:transitionName="@string/titulo"
                 android:contentDescription="@string/descripcion"
+                android:transitionName="@string/titulo"
                 tools:ignore="RtlHardcoded" />
 
             <TextView
@@ -41,11 +43,12 @@
                 app:startIconDrawable="@drawable/ic_matricula"
                 app:endIconMode="clear_text"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox" >
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
-                    android:maxLength="10"/>
+                    android:maxLength="10" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -194,8 +197,8 @@
                 android:id="@+id/airCheck"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="@string/aire" >
-            </com.google.android.material.checkbox.MaterialCheckBox>
+                android:checked="false"
+                android:text="@string/aire"></com.google.android.material.checkbox.MaterialCheckBox>
 
             <com.google.android.material.checkbox.MaterialCheckBox
                 android:id="@+id/sunroofCheck"

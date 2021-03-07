@@ -1,47 +1,61 @@
 package uteq.student.project.carof;
 
+
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.widget.ImageView;
+import android.widget.Toast;
+
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
-import uteq.student.project.carof.activities.LoginActivity;
-import uteq.student.project.carof.activities.VehiculoActivity;
 import uteq.student.project.carof.fragments.MenuFragment;
+import uteq.student.project.carof.fragments.VehiculoDesFragment;
+import uteq.student.project.carof.fragments.VehiculosFragmentv1;
 import uteq.student.project.carof.interfaces.IComunicacionFragments;
 
-public class MainActivity extends AppCompatActivity implements IComunicacionFragments, MenuFragment.OnFragmentInteractionListener {
+public class MainActivity extends AppCompatActivity implements IComunicacionFragments, MenuFragment.OnFragmentInteractionListener, VehiculosFragmentv1.OnFragmentInteractionListener {
 
-    private Fragment fragmentMenu;
-    private Intent intent;
+    private Fragment fragmentMenu,fragmentVehiculo, fragmentDesVehiculo;
+
     private FirebaseAuth firebaseAuth;
     private FirebaseFirestore db;
     private String emailUser,id_duenio;
     private SharedPreferences preferences;
     private SharedPreferences.Editor editor;
+    ImageView imgAuto;
     Bundle b = new Bundle();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         firebaseAuth = FirebaseAuth.getInstance();
         emailUser = getIntent().getExtras().getString("email");
         id_duenio = getIntent().getExtras().getString("id_duenio");
         fragmentMenu = new MenuFragment();
+        fragmentVehiculo = new VehiculosFragmentv1();
+        fragmentDesVehiculo = new VehiculoDesFragment();
         preferences = getSharedPreferences(getString(R.string.preference), Context.MODE_PRIVATE);
         editor = preferences.edit();
         editor.putString("email", emailUser);
         editor.putString("id_duenio", id_duenio);
         editor.apply();
+        imgAuto = findViewById(R.id.imgAuto);
         getSupportFragmentManager().beginTransaction().replace(R.id.contentFragment, fragmentMenu).commit();
     }
 
@@ -52,10 +66,24 @@ public class MainActivity extends AppCompatActivity implements IComunicacionFrag
 
     @Override
     public void vehiculo(String id) {
-        intent = new Intent(this, VehiculoActivity.class);
-        b.putString("id_duenio",b.getString("id_duenio"));
-        intent.putExtras(b);
-        startActivity(intent);
+        b.putString("id_duenio",id);
+        fragmentVehiculo.setArguments(b);
+        getSupportFragmentManager().beginTransaction().replace(R.id.contentFragment, fragmentVehiculo).commit();
+    }
+
+    @Override
+    public void addvehiculo(String id) {
+        b.putString("id_duenio",id);
+        fragmentDesVehiculo.setArguments(b);
+        getSupportFragmentManager().beginTransaction().replace(R.id.contentFragment, fragmentDesVehiculo).commit();
+    }
+
+    @Override
+    public void editvehiculo(String id_vehiculo, String id_duenio) {
+        b.putString("id_vehiculo",id_vehiculo);
+        b.putString("id_duenio",id_duenio);
+        fragmentDesVehiculo.setArguments(b);
+        getSupportFragmentManager().beginTransaction().replace(R.id.contentFragment, fragmentDesVehiculo).commit();
     }
 
     @Override
@@ -78,6 +106,8 @@ public class MainActivity extends AppCompatActivity implements IComunicacionFrag
 
     }
 
+
+
     @Override
     public void informacion() {
 
@@ -98,4 +128,5 @@ public class MainActivity extends AppCompatActivity implements IComunicacionFrag
         editor.apply();
         onBackPressed();
     }
+
 }
