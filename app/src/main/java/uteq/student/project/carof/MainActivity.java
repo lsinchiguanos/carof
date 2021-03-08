@@ -22,6 +22,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import uteq.student.project.carof.activities.MonitoreoActivity;
 import uteq.student.project.carof.fragments.MenuFragment;
 import uteq.student.project.carof.fragments.VehiculoDesFragment;
 import uteq.student.project.carof.fragments.VehiculosFragmentv1;
@@ -95,7 +96,9 @@ public class MainActivity extends AppCompatActivity implements IComunicacionFrag
 
     @Override
     public void monitoreo() {
-
+        Intent intent = new Intent(MainActivity.this, MonitoreoActivity.class);
+        intent.putExtra("id_duenio", id_duenio);
+        startActivity(intent);
     }
 
     @Override

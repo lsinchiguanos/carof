@@ -34,7 +34,7 @@
 
         <activity
             android:name=".activities.MonitoreoActivity"
-            android:label="@string/title_activity_monitoreo"></activity>
+            android:label="@string/title_activity_monitoreo" />
         <activity android:name=".activities.LoginActivity" />
         <activity android:name=".activities.SignUpActivity" />
         <activity android:name=".MainActivity" />
