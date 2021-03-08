@@ -76,7 +76,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="number" />
+                    android:inputType="numberDecimal" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <LinearLayout
@@ -97,77 +97,46 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="number" />
+                        android:inputType="numberDecimal" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/puertaTextInput"
+                    android:id="@+id/limiteChoques"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:hint="@string/puertas"
+                    android:hint="@string/danio"
                     android:layout_weight="1"
-                    app:startIconDrawable="@drawable/ic_door"
+                    app:startIconDrawable="@drawable/ic_choque"
                     app:endIconMode="clear_text"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox" >
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="number" />
+                        android:inputType="numberDecimal" />
                 </com.google.android.material.textfield.TextInputLayout>
 
             </LinearLayout>
 
-            <LinearLayout
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/maletaTextInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:baselineAligned="false">
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/maletaTextInput"
-                    android:layout_width="0dp"
+                android:hint="@string/limite"
+                app:startIconDrawable="@drawable/ic_baseline_pin_drop_24"
+                app:endIconMode="clear_text"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox" >
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/maletas"
-                    android:layout_weight="1"
-                    app:startIconDrawable="@drawable/ic_baseline_backpack_24"
-                    app:endIconMode="clear_text"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox" >
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="number" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/pasajeroTextInput"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/pasajeros"
-                    android:layout_weight="1"
-                    app:startIconDrawable="@drawable/ic_user"
-                    app:endIconMode="clear_text"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox" >
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="number" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-            </LinearLayout>
+                    android:inputType="number" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.checkbox.MaterialCheckBox
                 android:id="@+id/airCheck"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:checked="false"
-                android:text="@string/aire" />
-
-            <com.google.android.material.checkbox.MaterialCheckBox
-                android:id="@+id/sunroofCheck"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="@string/sunroof" >
-            </com.google.android.material.checkbox.MaterialCheckBox>
+                android:text="@string/pagoanticipado" />
 
             <Button
                 android:id="@+id/btnRegistroVehiculo"
