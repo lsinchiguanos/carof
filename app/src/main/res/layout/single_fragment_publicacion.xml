@@ -16,19 +16,19 @@
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:src="@drawable/ic_baseline_directions_car_24"
-            android:id="@+id/img1"
+            android:id="@+id/img2"
             android:contentDescription="@string/descripcion" />
 
         <TextView
+            android:id="@+id/tituloPublicacion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/tituloPublicacion"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@id/img2"
             android:text="@string/publicacionesCardViewText"
-            android:textStyle="bold"
-            android:textSize="25sp"
             android:textColor="#000"
-            android:layout_toEndOf="@id/img1"
-            android:layout_marginStart="10dp"/>
+            android:textSize="25sp"
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="match_parent"
@@ -37,7 +37,7 @@
             android:text="@string/marca"
             android:textSize="18sp"
             android:textColor="#000"
-            android:layout_toEndOf="@id/img1"
+            android:layout_toEndOf="@id/img2"
             android:layout_below="@id/tituloPublicacion"
             android:layout_marginStart="10dp"/>
 
@@ -48,7 +48,7 @@
             android:text="@string/anio"
             android:textSize="18sp"
             android:textColor="#000"
-            android:layout_toEndOf="@id/img1"
+            android:layout_toEndOf="@id/img2"
             android:layout_below="@id/marca"
             android:layout_marginStart="10dp"/>
 
@@ -59,7 +59,7 @@
             android:text="@string/valor"
             android:textSize="25sp"
             android:textColor="#000"
-            android:layout_toEndOf="@id/img1"
+            android:layout_toEndOf="@id/img2"
             android:layout_below="@id/anioC"
             android:layout_marginStart="10dp"/>
 

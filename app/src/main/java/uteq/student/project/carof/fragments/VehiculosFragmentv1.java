@@ -20,7 +20,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -235,7 +234,7 @@ public class VehiculosFragmentv1 extends Fragment {
             marca = itemView.findViewById(R.id.marca);
             modelo = itemView.findViewById(R.id.modelo);
             anio = itemView.findViewById(R.id.anio);
-            imgUrl = itemView.findViewById(R.id.img1);
+            imgUrl = itemView.findViewById(R.id.img2);
         }
     }
 

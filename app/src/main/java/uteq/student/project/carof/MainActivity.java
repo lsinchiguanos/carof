@@ -24,7 +24,7 @@ import uteq.student.project.carof.fragments.VehiculoDesFragment;
 import uteq.student.project.carof.fragments.VehiculosFragmentv1;
 import uteq.student.project.carof.interfaces.IComunicacionFragments;
 
-public class MainActivity extends AppCompatActivity implements IComunicacionFragments, MenuFragment.OnFragmentInteractionListener, VehiculosFragmentv1.OnFragmentInteractionListener {
+public class MainActivity extends AppCompatActivity implements IComunicacionFragments, MenuFragment.OnFragmentInteractionListener, VehiculosFragmentv1.OnFragmentInteractionListener, PublicacionFragment.OnFragmentInteractionListener{
 
     private Fragment fragmentMenu, fragmentVehiculo, fragmentDesVehiculo, fragmentPublicaciones, fragmentNewPublicacion;
 
@@ -104,8 +104,8 @@ public class MainActivity extends AppCompatActivity implements IComunicacionFrag
     }
 
     @Override
-    public void publicacion() {
-        b.putString("id_duenio", id_duenio);
+    public void publicacion(String id) {
+        b.putString("id_duenio", id);
         fragmentPublicaciones.setArguments(b);
         getSupportFragmentManager().beginTransaction().replace(R.id.contentFragment, fragmentPublicaciones).commit();
     }
@@ -118,8 +118,12 @@ public class MainActivity extends AppCompatActivity implements IComunicacionFrag
     }
 
     @Override
-    public void editpublicacion(String id_vehiculo, String id_duenio) {
-
+    public void editpublicacion(String id,String id_publi, String id_vehi) {
+        b.putString("id_duenio", id);
+        b.putString("id_publicacion", id_publi);
+        b.putString("id_vehi", id_vehi);
+        fragmentNewPublicacion.setArguments(b);
+        getSupportFragmentManager().beginTransaction().replace(R.id.contentFragment, fragmentNewPublicacion).commit();
     }
 
     @SuppressLint("CommitPrefEdits")

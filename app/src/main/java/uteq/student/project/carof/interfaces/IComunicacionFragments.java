@@ -12,11 +12,11 @@ public interface IComunicacionFragments {
 
     void monitoreo();
 
-    void publicacion();
+    void publicacion(String id);
 
     void addpublicacion(String id);
 
-    void editpublicacion(String id_vehiculo, String id_duenio);
+    void editpublicacion(String id,String id_publi, String id_vehi);
 
     void signUp();
 

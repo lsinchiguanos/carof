@@ -51,7 +51,7 @@ public class VehiculoDesFragment extends Fragment {
     private String mParam1;
     private String mParam2;
     Bundle b = new Bundle();
-    String id_vehiculo = "", id_duenio = "", img_url = "";
+    String id_vehiculo = "", id_duenio = "", img_url = "",estado="DISPONIBLE";
     Task<Void> query;
     private FirebaseFirestore firebaseFirestore;
     HashMap hashMap = new HashMap();
@@ -148,6 +148,19 @@ public class VehiculoDesFragment extends Fragment {
         return view;
     }
 
+    void limpiar(){
+        placaTextInput.getEditText().setText("");
+        marcaTextInput.getEditText().setText("");
+        modeloTextInput.getEditText().setText("");
+        anioTextInput.getEditText().setText("");
+        transmisionTextInput.getEditText().setText("");
+        maletaTextInput.getEditText().setText("");
+        traccionTextInput.getEditText().setText("");
+        puertaTextInput.getEditText().setText("");
+        pasajeroTextInput.getEditText().setText("");
+        gpsTextInput.getEditText().setText("");
+    }
+
     void saveVehiculo() {
         loadData();
         firebaseFirestore.collection("vehiculo").document().set(hashMap).
@@ -158,6 +171,7 @@ public class VehiculoDesFragment extends Fragment {
                         iComunicacionFragments.vehiculo(id_duenio);
                     }
                 });
+        limpiar();
     }
 
     void loadData() {
@@ -174,6 +188,7 @@ public class VehiculoDesFragment extends Fragment {
         hashMap.put("pasajero", Integer.valueOf(pasajeroTextInput.getEditText().getText().toString()));
         hashMap.put("gps", gpsTextInput.getEditText().getText().toString());
         hashMap.put("created_at", Timestamp.now());
+        hashMap.put("estado", estado);
 
         Boolean sun = false, air = false;
         if (airCheck.isChecked())
@@ -199,6 +214,8 @@ public class VehiculoDesFragment extends Fragment {
                 Toast.makeText(getContext(), "Error", Toast.LENGTH_SHORT).show();
             }
         });
+        limpiar();
+        //iComunicacionFragments.vehiculo(id_duenio);
     }
 
 
@@ -218,6 +235,9 @@ public class VehiculoDesFragment extends Fragment {
                     puertaTextInput.getEditText().setText(String.valueOf(documentSnapshot.getLong("puertas")));
                     pasajeroTextInput.getEditText().setText(String.valueOf(documentSnapshot.getLong("pasajero")));
                     gpsTextInput.getEditText().setText(documentSnapshot.getString("gps"));
+
+                    estado = documentSnapshot.getString("estado");
+
                     if (documentSnapshot.getBoolean("aire_acondicionado"))
                         airCheck.setChecked(true);
                     if (documentSnapshot.getBoolean("sunroof"))
