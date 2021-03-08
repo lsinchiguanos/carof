@@ -8,18 +8,15 @@ public interface IComunicacionFragments {
 
     void editvehiculo(String id_vehiculo, String id_duenio);
 
-
     void contratos();
 
     void monitoreo();
 
-    void historial();
-
     void publicacion();
 
-    void informacion();
+    void addpublicacion(String id);
 
-    void dispositivoGps();
+    void editpublicacion(String id_vehiculo, String id_duenio);
 
     void signUp();
 

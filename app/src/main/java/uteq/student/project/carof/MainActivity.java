@@ -18,13 +18,15 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import uteq.student.project.carof.fragments.MenuFragment;
+import uteq.student.project.carof.fragments.PublicacionFragment;
+import uteq.student.project.carof.fragments.PublicacionesFragmenttv1;
 import uteq.student.project.carof.fragments.VehiculoDesFragment;
 import uteq.student.project.carof.fragments.VehiculosFragmentv1;
 import uteq.student.project.carof.interfaces.IComunicacionFragments;
 
 public class MainActivity extends AppCompatActivity implements IComunicacionFragments, MenuFragment.OnFragmentInteractionListener, VehiculosFragmentv1.OnFragmentInteractionListener {
 
-    private Fragment fragmentMenu, fragmentVehiculo, fragmentDesVehiculo;
+    private Fragment fragmentMenu, fragmentVehiculo, fragmentDesVehiculo, fragmentPublicaciones, fragmentNewPublicacion;
 
     private FirebaseAuth firebaseAuth;
     private FirebaseFirestore db;
@@ -45,6 +47,8 @@ public class MainActivity extends AppCompatActivity implements IComunicacionFrag
         fragmentMenu = new MenuFragment();
         fragmentVehiculo = new VehiculosFragmentv1();
         fragmentDesVehiculo = new VehiculoDesFragment();
+        fragmentPublicaciones = new PublicacionesFragmenttv1();
+        fragmentNewPublicacion = new PublicacionFragment();
         preferences = getSharedPreferences(getString(R.string.preference), Context.MODE_PRIVATE);
         editor = preferences.edit();
         editor.putString("email", emailUser);
@@ -96,23 +100,21 @@ public class MainActivity extends AppCompatActivity implements IComunicacionFrag
     }
 
     @Override
-    public void historial() {
-
-    }
-
-    @Override
     public void publicacion() {
-
-    }
-
-
-    @Override
-    public void informacion() {
-
+        b.putString("id_duenio", id_duenio);
+        fragmentPublicaciones.setArguments(b);
+        getSupportFragmentManager().beginTransaction().replace(R.id.contentFragment, fragmentPublicaciones).commit();
     }
 
     @Override
-    public void dispositivoGps() {
+    public void addpublicacion(String id) {
+        b.putString("id_duenio", id);
+        fragmentNewPublicacion.setArguments(b);
+        getSupportFragmentManager().beginTransaction().replace(R.id.contentFragment, fragmentNewPublicacion).commit();
+    }
+
+    @Override
+    public void editpublicacion(String id_vehiculo, String id_duenio) {
 
     }
 

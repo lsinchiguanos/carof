@@ -1,14 +1,23 @@
 package uteq.student.project.carof.fragments;
 
+import android.app.Activity;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.paging.PagedList;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.firebase.ui.firestore.paging.FirestorePagingAdapter;
+import com.getbase.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+
 import uteq.student.project.carof.R;
+import uteq.student.project.carof.interfaces.IComunicacionFragments;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -16,6 +25,18 @@ import uteq.student.project.carof.R;
  * create an instance of this fragment.
  */
 public class PublicacionesFragmenttv1 extends Fragment {
+
+    Activity activity;
+    private RecyclerView mFirestore_list;
+    private FirebaseFirestore firebaseFirestore;
+    private FirestorePagingAdapter adapter;
+    Query query;
+    PagedList.Config config;
+    String id_duenio;
+    Bundle b = new Bundle();
+    FloatingActionButton btnAdd;
+    IComunicacionFragments iComunicacionFragments;
+    MenuFragment.OnFragmentInteractionListener onFragmentInteractionListener;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -61,6 +82,18 @@ public class PublicacionesFragmenttv1 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_publicaciones_fragmenttv1, container, false);
+        View view = inflater.inflate(R.layout.fragment_publicaciones_fragmenttv1, container, false);
+        firebaseFirestore = FirebaseFirestore.getInstance();
+        mFirestore_list = view.findViewById(R.id.firestore_listP);
+        btnAdd = view.findViewById(R.id.fbAddPublicacion);
+        id_duenio = this.getArguments().getString("id_duenio");
+        btnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //
+                iComunicacionFragments.addpublicacion(id_duenio);
+            }
+        });
+        return view;
     }
 }
