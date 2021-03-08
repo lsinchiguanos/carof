@@ -65,5 +65,7 @@
     <string name="danio">DAÑOS</string>
     <string name="limite">LIMITE</string>
     <string name="pagoanticipado">Pago anticipado</string>
+    <string name="valorLimite">VALOR GEOGRAFICO</string>
+    <string name="tanquefull">Tanque lleno</string>
 
 </resources>
