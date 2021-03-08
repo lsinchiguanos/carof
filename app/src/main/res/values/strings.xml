@@ -67,5 +67,7 @@
     <string name="pagoanticipado">Pago anticipado</string>
     <string name="valorLimite">VALOR GEOGRAFICO</string>
     <string name="tanquefull">Tanque lleno</string>
+    <string name="nombre_dispositivo">IDENTIFICADOR DEL DISPOSITIVO</string>
+    <string name="serial_dispositivo">989</string>
 
 </resources>
