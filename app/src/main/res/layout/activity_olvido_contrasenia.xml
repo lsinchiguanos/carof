@@ -17,14 +17,15 @@
         android:hint="@string/escribir_correo_electronico" />
 
     <com.google.android.material.button.MaterialButton
-       android:id="@+id/btnRecuperarC"
-       android:layout_width="229dp"
-       android:layout_height="wrap_content"
-       android:layout_alignParentStart="true"
-       android:layout_alignParentBottom="true"
-       android:layout_marginStart="84dp"
-       android:layout_marginBottom="246dp"
-       android:text="@string/recuperarcontrasenia" />
+        android:id="@+id/btnRecuperarC"
+        android:layout_width="229dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="84dp"
+        android:layout_marginBottom="246dp"
+        android:background="@drawable/round_bg"
+        android:text="Recuperar Contraseña" />
 
 
 </RelativeLayout>

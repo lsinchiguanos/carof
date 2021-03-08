@@ -1,8 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/contentFragment"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
+
+    <View
+        android:id="@+id/textView"
+        android:layout_width="422dp"
+        android:layout_height="67dp"
+        android:foreground="@color/purple_200"
+        android:textColor="#1D4C6A" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="57dp"
+        android:paddingTop="15sp"
+        android:text="Rental Car System"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="71dp"
+        android:layout_height="53dp"
+        android:layout_marginLeft="20sp"
+        android:layout_marginTop="4sp"
+        app:srcCompat="@mipmap/car_64" />
 </FrameLayout>
