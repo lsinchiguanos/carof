@@ -1,7 +1,6 @@
 package uteq.student.project.carof;
 
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
@@ -13,16 +12,11 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 
-import uteq.student.project.carof.activities.MonitoreoActivity;
 import uteq.student.project.carof.fragments.MenuFragment;
 import uteq.student.project.carof.fragments.VehiculoDesFragment;
 import uteq.student.project.carof.fragments.VehiculosFragmentv1;
@@ -96,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements IComunicacionFrag
 
     @Override
     public void monitoreo() {
-        Intent intent = new Intent(MainActivity.this, MonitoreoActivity.class);
+        Intent intent = new Intent(MainActivity.this, MapsActivity.class);
         intent.putExtra("id_duenio", id_duenio);
         startActivity(intent);
     }
