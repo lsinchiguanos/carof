@@ -51,7 +51,7 @@ public class VehiculoDesFragment extends Fragment {
     private String mParam1;
     private String mParam2;
     Bundle b = new Bundle();
-    String id_vehiculo = "",id_duenio="",img_url="";
+    String id_vehiculo = "", id_duenio = "", img_url = "";
     Task<Void> query;
     private FirebaseFirestore firebaseFirestore;
     HashMap hashMap = new HashMap();
@@ -122,10 +122,9 @@ public class VehiculoDesFragment extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 intent.setType("image/");
-                startActivityForResult(intent.createChooser(intent,"Seleccione la Aplicacion"),10);
+                startActivityForResult(intent.createChooser(intent, "Seleccione la Aplicacion"), 10);
             }
         });
-
 
 
         airCheck = view.findViewById(R.id.airCheck);
@@ -160,30 +159,32 @@ public class VehiculoDesFragment extends Fragment {
                     }
                 });
     }
-    void loadData(){
-        hashMap.put("placa",placaTextInput.getEditText().getText().toString());
-        hashMap.put("marca",marcaTextInput.getEditText().getText().toString());
-        hashMap.put("modelo",modeloTextInput.getEditText().getText().toString());
-        hashMap.put("anio",anioTextInput.getEditText().getText().toString());
-        hashMap.put("duenio",id_duenio);
-        hashMap.put("url",img_url);
-        hashMap.put("transmision",transmisionTextInput.getEditText().getText().toString());
+
+    void loadData() {
+        hashMap.put("placa", placaTextInput.getEditText().getText().toString());
+        hashMap.put("marca", marcaTextInput.getEditText().getText().toString());
+        hashMap.put("modelo", modeloTextInput.getEditText().getText().toString());
+        hashMap.put("anio", anioTextInput.getEditText().getText().toString());
+        hashMap.put("duenio", id_duenio);
+        hashMap.put("url", img_url);
+        hashMap.put("transmision", transmisionTextInput.getEditText().getText().toString());
         hashMap.put("maleta", Integer.valueOf(maletaTextInput.getEditText().getText().toString()));
-        hashMap.put("traccion",traccionTextInput.getEditText().getText().toString());
+        hashMap.put("traccion", traccionTextInput.getEditText().getText().toString());
         hashMap.put("puertas", Integer.valueOf(puertaTextInput.getEditText().getText().toString()));
-        hashMap.put("pasajero",Integer.valueOf(pasajeroTextInput.getEditText().getText().toString()));
-        hashMap.put("gps",gpsTextInput.getEditText().getText().toString());
+        hashMap.put("pasajero", Integer.valueOf(pasajeroTextInput.getEditText().getText().toString()));
+        hashMap.put("gps", gpsTextInput.getEditText().getText().toString());
         hashMap.put("created_at", Timestamp.now());
 
-        Boolean sun=false,air=false;
+        Boolean sun = false, air = false;
         if (airCheck.isChecked())
             air = true;
         if (sunroofCheck.isChecked())
             sun = true;
-        hashMap.put("aire_acondicionado",air);
-        hashMap.put("sunroof",sun);
+        hashMap.put("aire_acondicionado", air);
+        hashMap.put("sunroof", sun);
     }
-    void updateVehiculo(){
+
+    void updateVehiculo() {
         loadData();
         query = firebaseFirestore.collection("vehiculo").document(id_vehiculo).update(
                 hashMap).addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -201,12 +202,12 @@ public class VehiculoDesFragment extends Fragment {
     }
 
 
-    void loadVehiculo(){
+    void loadVehiculo() {
 
         firebaseFirestore.collection("vehiculo").document(id_vehiculo).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
-                if(documentSnapshot.exists()){
+                if (documentSnapshot.exists()) {
                     placaTextInput.getEditText().setText(documentSnapshot.getString("placa"));
                     marcaTextInput.getEditText().setText(documentSnapshot.getString("marca"));
                     modeloTextInput.getEditText().setText(documentSnapshot.getString("modelo"));
@@ -217,12 +218,12 @@ public class VehiculoDesFragment extends Fragment {
                     puertaTextInput.getEditText().setText(String.valueOf(documentSnapshot.getLong("puertas")));
                     pasajeroTextInput.getEditText().setText(String.valueOf(documentSnapshot.getLong("pasajero")));
                     gpsTextInput.getEditText().setText(documentSnapshot.getString("gps"));
-                    if(documentSnapshot.getBoolean("aire_acondicionado"))
+                    if (documentSnapshot.getBoolean("aire_acondicionado"))
                         airCheck.setChecked(true);
-                    if(documentSnapshot.getBoolean("sunroof"))
+                    if (documentSnapshot.getBoolean("sunroof"))
                         sunroofCheck.setChecked(true);
 
-                }else {
+                } else {
                     Toast.makeText(getContext(), "no", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -230,11 +231,12 @@ public class VehiculoDesFragment extends Fragment {
 
 
     }
+
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         if (context instanceof Activity) {
-            activity= (Activity) context;
+            activity = (Activity) context;
             iComunicacionFragments = (IComunicacionFragments) activity;
         }
         if (context instanceof MenuFragment.OnFragmentInteractionListener) {
@@ -246,7 +248,6 @@ public class VehiculoDesFragment extends Fragment {
     }
 
 
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
 
@@ -254,14 +255,14 @@ public class VehiculoDesFragment extends Fragment {
         //Toast.makeText(getActivity(), "SI", Toast.LENGTH_SHORT).show();
         super.onActivityResult(requestCode, resultCode, data);
         Toast.makeText(getActivity(), "SI", Toast.LENGTH_SHORT).show();
-        if(resultCode == getActivity().RESULT_OK) {
+        if (resultCode == getActivity().RESULT_OK) {
             Uri patch = data.getData();
             imgAuto.setImageURI(patch);
             StorageReference filepath = storageRef.child("coches").child(patch.getLastPathSegment());
             filepath.putFile(patch).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    img_url =  taskSnapshot.getStorage().getDownloadUrl().getResult().toString();
+                    img_url = taskSnapshot.getStorage().getDownloadUrl().getResult().toString();
                     Toast.makeText(getActivity(), "Imagen Guardada", Toast.LENGTH_SHORT).show();
                 }
             });

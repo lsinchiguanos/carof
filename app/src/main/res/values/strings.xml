@@ -33,7 +33,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="vehiculoCardViewText">VEHICULO</string>
-    <string name="contratoCardViewText">CONTRATOS</string>
+    <string name="contratoCardViewText">PUBLICACIÓN</string>
     <string name="monitoreoCardViewText">MONITOREO</string>
     <string name="historialCardViewText">HISTORIAL</string>
     <string name="publicacionesCardViewText">PUBLICACIONES</string>
@@ -55,5 +55,12 @@
     <string name="cerrar_sesion">CERRAR SESION</string>
 
     <string name="preference">uteq.student.project.carof.PREFERENCE_FILE_KEY</string>
+    <string name="escribir_correo_electronico">Escribir correo electronico</string>
+    <string name="recuperarcontrasenia">RecuperarContrasenia</string>
+    <string name="cliente">CLIENTE</string>
+    <string name="dias">DIAS</string>
+    <string name="valor">VALOR DIARIO</string>
+    <string name="tituloPublicacion">TÍTULO PUBLICACIÓN</string>
+    <string name="exvelocidad"><![CDATA[>100]]></string>
 
 </resources>

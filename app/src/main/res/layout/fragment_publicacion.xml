@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragments.VehiculoDesFragment">
+    tools:context=".fragments.PublicacionFragment">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -30,33 +30,17 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/vehiculoCardViewText"
+                android:text="@string/contratoCardViewText"
                 android:layout_marginTop="28dp"
                 android:textSize="35sp"
                 android:textStyle="bold" />
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/placaTextInput"
+                android:id="@+id/titulo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/placa"
-                app:startIconDrawable="@drawable/ic_matricula"
-                app:endIconMode="clear_text"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox" >
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="text"
-                    android:maxLength="10" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/marcaTextInput"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/marca"
-                app:startIconDrawable="@drawable/ic_baseline_star_border_24"
+                android:hint="@string/tituloPublicacion"
+                app:startIconDrawable="@drawable/ic_baseline_info_24"
                 app:endIconMode="clear_text"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox" >
                 <com.google.android.material.textfield.TextInputEditText
@@ -66,17 +50,33 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/modeloTextInput"
+                android:id="@+id/vehiculoItem"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/modelo"
-                app:startIconDrawable="@drawable/ic_baseline_star_border_24"
+                android:hint="@string/vehiculoCardViewText"
+                app:startIconDrawable="@drawable/ic_baseline_directions_car_24"
+                app:endIconMode="dropdown_menu"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+                <AutoCompleteTextView
+                    android:id="@+id/list_itemFrag"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="none"
+                    tools:ignore="LabelFor" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/valor_diario"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/valor"
+                app:startIconDrawable="@drawable/ic_baseline_monetization_on_24"
                 app:endIconMode="clear_text"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox" >
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="text" />
+                    android:inputType="number" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <LinearLayout
@@ -86,50 +86,12 @@
                 android:baselineAligned="false">
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/anioTextInput"
+                    android:id="@+id/superaVelocidad"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:hint="@string/anio"
+                    android:hint="@string/exvelocidad"
                     android:layout_weight="1"
-                    app:startIconDrawable="@drawable/ic_baseline_calendar_today_24"
-                    app:endIconMode="clear_text"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox" >
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="number" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/traccionTextInput"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/traccion"
-                    android:layout_weight="1"
-                    app:startIconDrawable="@drawable/ic_traction"
-                    app:endIconMode="clear_text"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox" >
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="number" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:baselineAligned="false">
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/transmisionTextInput"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/transmision"
-                    android:layout_weight="1"
-                    app:startIconDrawable="@drawable/ic_gearshift"
+                    app:startIconDrawable="@drawable/ic_baseline_monetization_on_24"
                     app:endIconMode="clear_text"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox" >
                     <com.google.android.material.textfield.TextInputEditText
@@ -206,20 +168,6 @@
                 android:layout_height="match_parent"
                 android:text="@string/sunroof" >
             </com.google.android.material.checkbox.MaterialCheckBox>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/gpsTextInput"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/gps"
-                app:startIconDrawable="@drawable/ic_baseline_gps_fixed_24"
-                app:endIconMode="clear_text"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox" >
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="text" />
-            </com.google.android.material.textfield.TextInputLayout>
 
             <Button
                 android:id="@+id/btnRegistroVehiculo"

@@ -74,15 +74,14 @@ public class MenuFragment extends Fragment {
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_menu, container, false);
 
+        String ar = this.getArguments().getString("id_duenio");
+        String a = ar;
         cardViewVehiculo = view.findViewById(R.id.vehiculoCarView);
-        cardViewVehiculo.setOnClickListener(v -> iComunicacionFragments.vehiculo("1205388547"));
+        cardViewVehiculo.setOnClickListener(v -> iComunicacionFragments.vehiculo(this.getArguments().getString("id_duenio")));
 
         cardViewContrato = view.findViewById(R.id.contratosCardView);
         cardViewContrato.setOnClickListener(v -> iComunicacionFragments.contratos());
-
-        cardViewHistorial = view.findViewById(R.id.historialCardView);
-        cardViewHistorial.setOnClickListener(v -> iComunicacionFragments.historial());
-
+        
         cardViewMonitoreo = view.findViewById(R.id.monitoreoCardView);
         cardViewMonitoreo.setOnClickListener(v -> iComunicacionFragments.monitoreo());
 

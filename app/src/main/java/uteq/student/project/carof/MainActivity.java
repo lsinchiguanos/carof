@@ -29,11 +29,11 @@ import uteq.student.project.carof.interfaces.IComunicacionFragments;
 
 public class MainActivity extends AppCompatActivity implements IComunicacionFragments, MenuFragment.OnFragmentInteractionListener, VehiculosFragmentv1.OnFragmentInteractionListener {
 
-    private Fragment fragmentMenu,fragmentVehiculo, fragmentDesVehiculo;
+    private Fragment fragmentMenu, fragmentVehiculo, fragmentDesVehiculo;
 
     private FirebaseAuth firebaseAuth;
     private FirebaseFirestore db;
-    private String emailUser,id_duenio;
+    private String emailUser, id_duenio;
     private SharedPreferences preferences;
     private SharedPreferences.Editor editor;
     ImageView imgAuto;
@@ -56,6 +56,8 @@ public class MainActivity extends AppCompatActivity implements IComunicacionFrag
         editor.putString("id_duenio", id_duenio);
         editor.apply();
         imgAuto = findViewById(R.id.imgAuto);
+        b.putString("id_duenio", id_duenio);
+        fragmentMenu.setArguments(b);
         getSupportFragmentManager().beginTransaction().replace(R.id.contentFragment, fragmentMenu).commit();
     }
 
@@ -66,22 +68,22 @@ public class MainActivity extends AppCompatActivity implements IComunicacionFrag
 
     @Override
     public void vehiculo(String id) {
-        b.putString("id_duenio",id);
+        b.putString("id_duenio", id);
         fragmentVehiculo.setArguments(b);
         getSupportFragmentManager().beginTransaction().replace(R.id.contentFragment, fragmentVehiculo).commit();
     }
 
     @Override
     public void addvehiculo(String id) {
-        b.putString("id_duenio",id);
+        b.putString("id_duenio", id);
         fragmentDesVehiculo.setArguments(b);
         getSupportFragmentManager().beginTransaction().replace(R.id.contentFragment, fragmentDesVehiculo).commit();
     }
 
     @Override
     public void editvehiculo(String id_vehiculo, String id_duenio) {
-        b.putString("id_vehiculo",id_vehiculo);
-        b.putString("id_duenio",id_duenio);
+        b.putString("id_vehiculo", id_vehiculo);
+        b.putString("id_duenio", id_duenio);
         fragmentDesVehiculo.setArguments(b);
         getSupportFragmentManager().beginTransaction().replace(R.id.contentFragment, fragmentDesVehiculo).commit();
     }
@@ -105,7 +107,6 @@ public class MainActivity extends AppCompatActivity implements IComunicacionFrag
     public void publicacion() {
 
     }
-
 
 
     @Override

@@ -1,7 +1,5 @@
 package uteq.student.project.carof.interfaces;
 
-import android.content.Intent;
-
 public interface IComunicacionFragments {
 
     void vehiculo(String id);
