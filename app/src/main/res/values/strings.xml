@@ -69,5 +69,9 @@
     <string name="tanquefull">Tanque lleno</string>
     <string name="nombre_dispositivo">IDENTIFICADOR DEL DISPOSITIVO</string>
     <string name="serial_dispositivo">989</string>
+    <string name="title_activity_monitoreo">Map</string>
+    <string name="buscar">Buscar</string>
+    <string name="bloquear">Desbloquear</string>
+    <string name="desbloquear">Bloquear</string>
 
 </resources>
