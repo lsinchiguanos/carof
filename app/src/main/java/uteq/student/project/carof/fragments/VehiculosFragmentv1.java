@@ -83,7 +83,6 @@ public class VehiculosFragmentv1 extends Fragment {
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
-
         fragment.setArguments(args);
         return fragment;
     }
@@ -103,7 +102,6 @@ public class VehiculosFragmentv1 extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_vehiculos_fragmentv1, container, false);
-
         firebaseFirestore = FirebaseFirestore.getInstance();
         mFirestore_list = view.findViewById(R.id.firestore_list);
         btnAdd = view.findViewById(R.id.fbAddCar);
@@ -111,7 +109,6 @@ public class VehiculosFragmentv1 extends Fragment {
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //
                 iComunicacionFragments.addvehiculo(id_duenio);
             }
         });

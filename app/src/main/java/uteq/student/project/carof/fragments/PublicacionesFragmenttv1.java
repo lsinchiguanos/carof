@@ -1,8 +1,11 @@
 package uteq.student.project.carof.fragments;
 
 import android.app.Activity;
+import android.content.Context;
+import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.paging.PagedList;
 import androidx.recyclerview.widget.RecyclerView;
@@ -95,5 +98,25 @@ public class PublicacionesFragmenttv1 extends Fragment {
             }
         });
         return view;
+    }
+
+    public interface OnFragmentInteractionListener {
+        void onFragmentInteraction(Uri uri);
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+
+        if (context instanceof Activity) {
+            activity = (Activity) context;
+            iComunicacionFragments = (IComunicacionFragments) activity;
+        }
+        if (context instanceof MenuFragment.OnFragmentInteractionListener) {
+            onFragmentInteractionListener = (MenuFragment.OnFragmentInteractionListener) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement OnFragmentInteractionListener");
+        }
     }
 }

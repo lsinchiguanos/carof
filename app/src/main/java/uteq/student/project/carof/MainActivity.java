@@ -44,11 +44,15 @@ public class MainActivity extends AppCompatActivity implements IComunicacionFrag
         firebaseAuth = FirebaseAuth.getInstance();
         emailUser = getIntent().getExtras().getString("email");
         id_duenio = getIntent().getExtras().getString("id_duenio");
+
         fragmentMenu = new MenuFragment();
+
         fragmentVehiculo = new VehiculosFragmentv1();
         fragmentDesVehiculo = new VehiculoDesFragment();
+
         fragmentPublicaciones = new PublicacionesFragmenttv1();
         fragmentNewPublicacion = new PublicacionFragment();
+
         preferences = getSharedPreferences(getString(R.string.preference), Context.MODE_PRIVATE);
         editor = preferences.edit();
         editor.putString("email", emailUser);
