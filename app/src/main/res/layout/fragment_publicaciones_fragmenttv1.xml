@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.VehiculosFragmentv1">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.PublicacionesFragmenttv1">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/firestore_list"
@@ -31,7 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:fab_colorNormal="@color/black"
-            app:fab_icon="@drawable/ic_baseline_directions_car_24"
+            app:fab_icon="@drawable/ic_newspaper"
             app:fab_size="normal" />
 
     </com.getbase.floatingactionbutton.FloatingActionsMenu>
