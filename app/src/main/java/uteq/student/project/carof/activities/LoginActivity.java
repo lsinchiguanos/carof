@@ -84,10 +84,13 @@ public class LoginActivity extends AppCompatActivity {
     private void session() {
         preferences = getSharedPreferences(getString(R.string.preference), Context.MODE_PRIVATE);
         email = preferences.getString("email", null);
+        String id_duenio = "";
+        id_duenio = preferences.getString("id_duenio", null);
         if (email != null) {
             LoginActivity.this.setVisible(false);
             intent = new Intent(LoginActivity.this, MainActivity.class);
             intent.putExtra("email", email);
+            intent.putExtra("id_duenio", id_duenio);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
             startActivity(intent);
