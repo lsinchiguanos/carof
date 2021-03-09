@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -37,12 +38,15 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.Objects;
 
+import uteq.student.project.carof.models.MonitoreoModel;
 import uteq.student.project.carof.models.VehiculoModel;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private Spinner spinner;
     private Button button;
+    private Button btnOns;
+    private Button btnOffs;
     private ListView listView;
 
     private CameraUpdate cameraUpdate;
@@ -56,6 +60,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     /*private Task<QuerySnapshot> query;*/
     private String id_duenio;
 
+    boolean bloqueado_log;
+    String estado_log;
+    Timestamp fecha_log;
+    double latitud_log;
+    double longitud_log;
+    double velocidad_log;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,8 +79,30 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         firebaseFirestore = FirebaseFirestore.getInstance();
         spinner = findViewById(R.id.list_Carros);
         button = findViewById(R.id.btnBuscar);
+        button = findViewById(R.id.btnOff);
+        button = findViewById(R.id.btnBuscar);
         listView = findViewById(R.id.logMonitoreo);
         init();
+        desbloquear();
+        bloquear();
+    }
+
+    private void desbloquear() {
+        btnOns.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+    }
+
+    private void bloquear() {
+        btnOffs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 
     private void countDownTime() {
@@ -118,11 +151,21 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 });
     }
 
+    private void registerLogs() {
+        if (estado_log.equals("ENCENDIDO") && velocidad_log > 0) {
+            Toast.makeText(this, "Carro en movimiento, acción no ejecutable", Toast.LENGTH_LONG).show();
+        } else {
+            VehiculoModel vehiculoModel = (VehiculoModel) spinner.getSelectedItem();
+            bloqueado_log = true;
+            documentReference = firebaseFirestore.collection("monitoreo_log").document(vehiculoModel.getId_vehiculo());
+            MonitoreoModel monitoreoModel = new MonitoreoModel(estado_log, latitud_log, longitud_log, velocidad_log, bloqueado_log, Timestamp.now());
+            documentReference.set(monitoreoModel);
+            Toast.makeText(this, "Acción no ejecutable", Toast.LENGTH_LONG).show();
+        }
+    }
 
-
-    public void recuperaLog() {
+    private void recuperaLog() {
         ArrayList<String> stringArrayList = new ArrayList<>();
-        ArrayAdapter<String> stringArrayAdapter;
         VehiculoModel vehiculoModel = (VehiculoModel) spinner.getSelectedItem();
         documentReference = firebaseFirestore.collection("monitoreo_log").document(vehiculoModel.getId_vehiculo());
         documentReference.collection("registros").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -130,14 +173,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
                     for (QueryDocumentSnapshot documentSnapshot : Objects.requireNonNull(task.getResult())) {
-                        String uishai4 = documentSnapshot.getId();
-                        boolean bloqueado_log = documentSnapshot.getBoolean("bloqueado_log");
-                        String estado_log = documentSnapshot.getString("estado_log");
-                        Timestamp fecha_log = documentSnapshot.getTimestamp("fecha_log");
-                        double latitud_log = documentSnapshot.getDouble("latitud_log");
-                        double longitud_log = documentSnapshot.getDouble("longitud_log");
-                        double velocidad_log = documentSnapshot.getDouble("velocidad_log");
-                        String cadena = "fecha: " + fecha_log.toDate() + "\n LatLong: [" + latitud_log + ", " + longitud_log + "]\n velocidad: " + velocidad_log + "\n estado: " + estado_log +" \n bloquedo: " + bloqueado_log + "\n sha1: " + uishai4 + "";
+                        bloqueado_log = documentSnapshot.getBoolean("bloqueado_log");
+                        estado_log = documentSnapshot.getString("estado_log");
+                        fecha_log = documentSnapshot.getTimestamp("fecha_log");
+                        latitud_log = documentSnapshot.getDouble("latitud_log");
+                        longitud_log = documentSnapshot.getDouble("longitud_log");
+                        velocidad_log = documentSnapshot.getDouble("velocidad_log");
+                        String cadena = "fecha: " + fecha_log.toDate() + "\n LatLong: [" + latitud_log + ", " + longitud_log + "]\n velocidad: " + velocidad_log + "\n estado: " + estado_log +" \n bloquedo: " + bloqueado_log + "\n";
                         stringArrayList.add(cadena);
                     }
                     part3(stringArrayList);

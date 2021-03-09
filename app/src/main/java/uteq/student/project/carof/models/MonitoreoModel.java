@@ -7,7 +7,7 @@ public class MonitoreoModel {
     private String estado;
     private double latitud;
     private double longitud;
-    private int velocidad;
+    private double velocidad;
     private boolean bloqueado;
     private Timestamp fecha;
     private String uishai4;
@@ -15,7 +15,7 @@ public class MonitoreoModel {
     public MonitoreoModel() {
     }
 
-    public MonitoreoModel(String estado, double latitud, double longitud, int velocidad, boolean bloqueado, Timestamp fecha, String uishai4) {
+    public MonitoreoModel(String estado, double latitud, double longitud, double velocidad, boolean bloqueado, Timestamp fecha) {
         this.estado = estado;
         this.latitud = latitud;
         this.longitud = longitud;
@@ -25,7 +25,7 @@ public class MonitoreoModel {
         this.uishai4 = uishai4;
     }
 
-    public MonitoreoModel(String estado, double latitud, double longitud, int velocidad, boolean bloqueado) {
+    public MonitoreoModel(String estado, double latitud, double longitud, double velocidad, boolean bloqueado) {
         this.estado = estado;
         this.latitud = latitud;
         this.longitud = longitud;
@@ -57,7 +57,7 @@ public class MonitoreoModel {
         this.longitud = longitud;
     }
 
-    public int getVelocidad() {
+    public double getVelocidad() {
         return velocidad;
     }
 
