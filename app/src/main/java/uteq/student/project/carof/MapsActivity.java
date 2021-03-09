@@ -35,6 +35,7 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -57,15 +58,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private FirebaseFirestore firebaseFirestore;
     private DocumentReference documentReference;
     private CollectionReference collectionReference;
-    /*private Task<QuerySnapshot> query;*/
-    private String id_duenio;
 
-    boolean bloqueado_log;
-    String estado_log;
-    Timestamp fecha_log;
-    double latitud_log;
-    double longitud_log;
-    double velocidad_log;
+    private MonitoreoModel model;
+
+    private String id_duenio;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,8 +75,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         firebaseFirestore = FirebaseFirestore.getInstance();
         spinner = findViewById(R.id.list_Carros);
         button = findViewById(R.id.btnBuscar);
-        button = findViewById(R.id.btnOff);
-        button = findViewById(R.id.btnBuscar);
+        btnOns = findViewById(R.id.btnOn);
+        btnOffs = findViewById(R.id.btnOff);
         listView = findViewById(R.id.logMonitoreo);
         init();
         desbloquear();
@@ -91,7 +87,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         btnOns.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                registerLogs(false);
+                cargarMapa();
+                recuperaLog();
             }
         });
     }
@@ -100,7 +98,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         btnOffs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                registerLogs(true);
+                cargarMapa();
+                recuperaLog();
             }
         });
     }
@@ -151,16 +151,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 });
     }
 
-    private void registerLogs() {
-        if (estado_log.equals("ENCENDIDO") && velocidad_log > 0) {
+    private void registerLogs(boolean bloqueado_logs) {
+        if (model.getEstado().equals("ENCENDIDO") && model.getVelocidad() >= 0) {
             Toast.makeText(this, "Carro en movimiento, acción no ejecutable", Toast.LENGTH_LONG).show();
         } else {
             VehiculoModel vehiculoModel = (VehiculoModel) spinner.getSelectedItem();
-            bloqueado_log = true;
             documentReference = firebaseFirestore.collection("monitoreo_log").document(vehiculoModel.getId_vehiculo());
-            MonitoreoModel monitoreoModel = new MonitoreoModel(estado_log, latitud_log, longitud_log, velocidad_log, bloqueado_log, Timestamp.now());
-            documentReference.set(monitoreoModel);
-            Toast.makeText(this, "Acción no ejecutable", Toast.LENGTH_LONG).show();
+            model.setBloqueado(bloqueado_logs);
+            model.setFecha(Timestamp.now());
+            documentReference.collection("registros").add(model);
+            Toast.makeText(this, "Acción ejecutada", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -173,12 +173,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
                     for (QueryDocumentSnapshot documentSnapshot : Objects.requireNonNull(task.getResult())) {
-                        bloqueado_log = documentSnapshot.getBoolean("bloqueado_log");
-                        estado_log = documentSnapshot.getString("estado_log");
-                        fecha_log = documentSnapshot.getTimestamp("fecha_log");
-                        latitud_log = documentSnapshot.getDouble("latitud_log");
-                        longitud_log = documentSnapshot.getDouble("longitud_log");
-                        velocidad_log = documentSnapshot.getDouble("velocidad_log");
+                        boolean bloqueado_log = documentSnapshot.getBoolean("bloqueado_log");
+                        String estado_log = documentSnapshot.getString("estado_log");
+                        Timestamp fecha_log = documentSnapshot.getTimestamp("fecha_log");
+                        double latitud_log = documentSnapshot.getDouble("latitud_log");
+                        double longitud_log = documentSnapshot.getDouble("longitud_log");
+                        double velocidad_log = documentSnapshot.getDouble("velocidad_log");
                         String cadena = "fecha: " + fecha_log.toDate() + "\n LatLong: [" + latitud_log + ", " + longitud_log + "]\n velocidad: " + velocidad_log + "\n estado: " + estado_log +" \n bloquedo: " + bloqueado_log + "\n";
                         stringArrayList.add(cadena);
                     }
@@ -217,6 +217,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     double longitud = value.getDouble("longitud");
                     double velocidad = value.getDouble("velocidad");
                     boolean bloqueado = value.getBoolean("bloqueado");
+                    model = new MonitoreoModel(estado, latitud, longitud, velocidad, bloqueado);
                     markerOptions = new MarkerOptions();
                     markerOptions.title(vehiculoModel.getPlaca());
                     markerOptions.position(new LatLng(latitud, longitud));

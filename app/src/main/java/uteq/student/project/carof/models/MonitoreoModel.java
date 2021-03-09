@@ -72,4 +72,12 @@ public class MonitoreoModel {
     public void setBloqueado(boolean bloqueado) {
         this.bloqueado = bloqueado;
     }
+
+    public Timestamp getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Timestamp fecha) {
+        this.fecha = fecha;
+    }
 }
