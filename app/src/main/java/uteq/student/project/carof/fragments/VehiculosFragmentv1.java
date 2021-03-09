@@ -234,7 +234,7 @@ public class VehiculosFragmentv1 extends Fragment {
             marca = itemView.findViewById(R.id.marca);
             modelo = itemView.findViewById(R.id.modelo);
             anio = itemView.findViewById(R.id.anio);
-            imgUrl = itemView.findViewById(R.id.img2);
+            imgUrl = itemView.findViewById(R.id.img1);
         }
     }
 

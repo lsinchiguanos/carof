@@ -238,7 +238,7 @@ public class PublicacionesFragmenttv1 extends Fragment {
             marca = itemView.findViewById(R.id.marca);
             anioC = itemView.findViewById(R.id.anioC);
             costodiario = itemView.findViewById(R.id.costodiario);
-            img2 = itemView.findViewById(R.id.img2);
+            img2 = itemView.findViewById(R.id.img1);
         }
     }
 
