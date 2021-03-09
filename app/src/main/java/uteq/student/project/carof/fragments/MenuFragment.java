@@ -80,13 +80,13 @@ public class MenuFragment extends Fragment {
         cardViewVehiculo.setOnClickListener(v -> iComunicacionFragments.vehiculo(this.getArguments().getString("id_duenio")));
 
         cardViewContrato = view.findViewById(R.id.contratosCardView);
-        cardViewContrato.setOnClickListener(v -> iComunicacionFragments.contratos());
+        cardViewContrato.setOnClickListener(v -> iComunicacionFragments.publicacion(this.getArguments().getString("id_duenio")));
         
         cardViewMonitoreo = view.findViewById(R.id.monitoreoCardView);
         cardViewMonitoreo.setOnClickListener(v -> iComunicacionFragments.monitoreo());
 
         cardViewPublicaciones = view.findViewById(R.id.cardPublicaciones);
-        cardViewPublicaciones.setOnClickListener(v -> iComunicacionFragments.publicacion());
+        //cardViewPublicaciones.setOnClickListener(v -> iComunicacionFragments.publicacion());
 
         cardViewSignUp = view.findViewById(R.id.cardSignUp);
         cardViewSignUp.setOnClickListener(v -> iComunicacionFragments.signUp());

@@ -11,6 +11,7 @@ public class VehiculoModel {
     private String modelo;
     private String url;
     private String anio;
+    private String vehiculoCustom;
 
     public VehiculoModel(String id_vehiculo, String placa, String marca, String modelo, String url, String anio) {
         this.id_vehiculo = id_vehiculo;
@@ -22,6 +23,11 @@ public class VehiculoModel {
     }
     public VehiculoModel() {
 
+    }
+
+    public VehiculoModel(String id_vehiculo, String placa) {
+        this.id_vehiculo = id_vehiculo;
+        this.placa = placa;
     }
 
     public String getId_vehiculo() {
@@ -70,5 +76,11 @@ public class VehiculoModel {
 
     public void setAnio(String anio) {
         this.anio = anio;
+    }
+
+    @Override
+    public String toString() {
+        this.vehiculoCustom = this.placa;
+        return vehiculoCustom;
     }
 }

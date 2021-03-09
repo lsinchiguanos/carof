@@ -74,5 +74,6 @@
     <string name="bloquear">Desbloquear</string>
     <string name="desbloquear">Bloquear</string>
     <string name="title_activity_maps">Map</string>
+    <string name="actualizar">ACTUALIZAR</string>
 
 </resources>

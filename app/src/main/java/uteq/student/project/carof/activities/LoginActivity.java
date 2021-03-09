@@ -72,7 +72,6 @@ public class LoginActivity extends AppCompatActivity {
                 intent = new Intent(LoginActivity.this, MainActivity.class);
                 intent.putExtra("email", task.getResult().getUser().getEmail());
                 intent.putExtra("id_duenio", task.getResult().getUser().getUid());
-                Toast.makeText(LoginActivity.this, task.getResult().getUser().getUid(), Toast.LENGTH_LONG).show();
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                 startActivity(intent);

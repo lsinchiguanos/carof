@@ -20,7 +20,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -32,6 +31,7 @@ import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
+
 import uteq.student.project.carof.R;
 import uteq.student.project.carof.interfaces.IComunicacionFragments;
 import uteq.student.project.carof.models.VehiculoModel;
@@ -82,7 +82,6 @@ public class VehiculosFragmentv1 extends Fragment {
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
-
         fragment.setArguments(args);
         return fragment;
     }
@@ -102,20 +101,13 @@ public class VehiculosFragmentv1 extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_vehiculos_fragmentv1, container, false);
-
         firebaseFirestore = FirebaseFirestore.getInstance();
         mFirestore_list = view.findViewById(R.id.firestore_list);
-
         btnAdd = view.findViewById(R.id.fbAddCar);
-
-
-
         id_duenio = this.getArguments().getString("id_duenio");
-
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //
                 iComunicacionFragments.addvehiculo(id_duenio);
             }
         });
@@ -124,9 +116,8 @@ public class VehiculosFragmentv1 extends Fragment {
     }
 
 
-    void loadAutos(){
-        query = firebaseFirestore.collection("vehiculo").whereEqualTo("duenio",id_duenio);
-
+    void loadAutos() {
+        query = firebaseFirestore.collection("vehiculo").whereEqualTo("duenio", id_duenio);
         config = new PagedList.Config.Builder()
                 .setInitialLoadSizeHint(7)
                 .setPageSize(2)
@@ -149,7 +140,7 @@ public class VehiculosFragmentv1 extends Fragment {
             @NonNull
             @Override
             public CardsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.single_fragment,parent,false);
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.single_fragment, parent, false);
                 return new CardsViewHolder(view);
             }
 
@@ -163,11 +154,10 @@ public class VehiculosFragmentv1 extends Fragment {
                 Glide.with(VehiculosFragmentv1.this).load(model.getUrl())
                         .diskCacheStrategy(DiskCacheStrategy.ALL)
                         .into(holder.imgUrl);
-                holder.itemView.setOnClickListener(new View.OnClickListener(){
+                holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        //Toast.makeText(getContext(), model.getId_vehiculo(), Toast.LENGTH_SHORT).show();
-                        iComunicacionFragments.editvehiculo(model.getId_vehiculo(),id_duenio);
+                        iComunicacionFragments.editvehiculo(model.getId_vehiculo(), id_duenio);
                     }
                 });
 
@@ -178,13 +168,12 @@ public class VehiculosFragmentv1 extends Fragment {
                         return true;
                     }
                 });
-
-                //holder.imgUrl.setText(model.getImage());
             }
+
             @Override
             protected void onLoadingStateChanged(@NonNull LoadingState state) {
                 super.onLoadingStateChanged(state);
-                switch (state){
+                switch (state) {
                     case LOADING_INITIAL:
                         Log.d("PAGING_LOG", "Loading Initial Date");
                         break;
@@ -198,7 +187,7 @@ public class VehiculosFragmentv1 extends Fragment {
                         Log.d("PAGING_LOG", "Error Loading Data");
                         break;
                     case LOADED:
-                        Log.d("PAGING_LOG", "Total Items Loaded:"+ getItemCount());
+                        Log.d("PAGING_LOG", "Total Items Loaded:" + getItemCount());
                         break;
                 }
             }
@@ -208,17 +197,17 @@ public class VehiculosFragmentv1 extends Fragment {
         mFirestore_list.setAdapter(adapter);
     }
 
-    public AlertDialog dialogoAcceso(String id){
+    public AlertDialog dialogoAcceso(String id) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
         builder.setTitle("Eliminar Auto").
                 setMessage("Desea eliminar el auto ?").
                 setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
 
-            }
-        }).setPositiveButton("Eliminar", new DialogInterface.OnClickListener() {
+                    }
+                }).setPositiveButton("Eliminar", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 firebaseFirestore.collection("vehiculo").document(id).delete();
@@ -234,9 +223,9 @@ public class VehiculosFragmentv1 extends Fragment {
     }
 
 
-    private class CardsViewHolder extends RecyclerView.ViewHolder{
+    private class CardsViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView placa,marca,modelo,anio;
+        private TextView placa, marca, modelo, anio;
         private ImageView imgUrl;
 
         public CardsViewHolder(@NonNull View itemView) {
@@ -245,7 +234,7 @@ public class VehiculosFragmentv1 extends Fragment {
             marca = itemView.findViewById(R.id.marca);
             modelo = itemView.findViewById(R.id.modelo);
             anio = itemView.findViewById(R.id.anio);
-            imgUrl = itemView.findViewById(R.id.img1);
+            imgUrl = itemView.findViewById(R.id.img2);
         }
     }
 
@@ -254,8 +243,8 @@ public class VehiculosFragmentv1 extends Fragment {
         super.onAttach(context);
 
         if (context instanceof Activity) {
-            activity= (Activity) context;
-            iComunicacionFragments= (IComunicacionFragments) activity;
+            activity = (Activity) context;
+            iComunicacionFragments = (IComunicacionFragments) activity;
         }
         if (context instanceof MenuFragment.OnFragmentInteractionListener) {
             onFragmentInteractionListener = (MenuFragment.OnFragmentInteractionListener) context;

@@ -20,48 +20,48 @@
             android:contentDescription="@string/descripcion" />
 
         <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:id="@+id/tituloPublicacion"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_toEndOf="@id/img1"
             android:text="@string/publicacionesCardViewText"
-            android:textColor="@color/purple_200"
+            android:textStyle="bold"
             android:textSize="25sp"
-            android:textStyle="bold" />
+            android:textColor="#000"
+            android:layout_toEndOf="@id/img1"
+            android:layout_marginStart="10dp"/>
 
         <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:id="@+id/marca"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tituloPublicacion"
-            android:layout_marginStart="10dp"
-            android:layout_toEndOf="@id/img1"
             android:text="@string/marca"
-            android:textColor="@color/purple_200"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:textColor="#000"
+            android:layout_toEndOf="@id/img1"
+            android:layout_below="@id/tituloPublicacion"
+            android:layout_marginStart="10dp"/>
 
         <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:id="@+id/anioC"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/marca"
-            android:layout_marginStart="10dp"
-            android:layout_toEndOf="@id/img1"
             android:text="@string/anio"
-            android:textColor="@color/purple_200"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:textColor="#000"
+            android:layout_toEndOf="@id/img1"
+            android:layout_below="@id/marca"
+            android:layout_marginStart="10dp"/>
 
         <TextView
-            android:id="@+id/costodiario"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/anioC"
-            android:layout_marginStart="10dp"
-            android:layout_toEndOf="@id/img1"
+            android:id="@+id/costodiario"
             android:text="@string/valor"
-            android:textColor="@color/purple_200"
-            android:textSize="25sp" />
+            android:textSize="25sp"
+            android:textColor="#000"
+            android:layout_toEndOf="@id/img1"
+            android:layout_below="@id/anioC"
+            android:layout_marginStart="10dp"/>
 
     </RelativeLayout>
 
