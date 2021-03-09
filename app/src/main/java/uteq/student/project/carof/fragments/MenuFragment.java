@@ -85,9 +85,6 @@ public class MenuFragment extends Fragment {
         cardViewMonitoreo = view.findViewById(R.id.monitoreoCardView);
         cardViewMonitoreo.setOnClickListener(v -> iComunicacionFragments.monitoreo());
 
-        cardViewPublicaciones = view.findViewById(R.id.cardPublicaciones);
-        //cardViewPublicaciones.setOnClickListener(v -> iComunicacionFragments.publicacion());
-
         cardViewSignUp = view.findViewById(R.id.cardSignUp);
         cardViewSignUp.setOnClickListener(v -> iComunicacionFragments.signUp());
 

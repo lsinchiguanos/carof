@@ -39,6 +39,7 @@ import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Objects;
 
+import uteq.student.project.carof.models.LogModel;
 import uteq.student.project.carof.models.MonitoreoModel;
 import uteq.student.project.carof.models.VehiculoModel;
 
@@ -138,11 +139,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             Toast.makeText(this, "Carro en movimiento, acción no ejecutable", Toast.LENGTH_LONG).show();
         } else {
             VehiculoModel vehiculoModel = (VehiculoModel) spinner.getSelectedItem();
+            LogModel logModel = new LogModel();
 
             documentReference = firebaseFirestore.collection("monitoreo_log").document(vehiculoModel.getId_vehiculo());
-            model.setBloqueado(bloqueado_logs);
-            model.setFecha(Timestamp.now());
-            documentReference.collection("registros").add(model);
+            logModel.setBloqueado_log(bloqueado_logs);
+            logModel.setFecha_log(Timestamp.now());
+            logModel.setEstado_log(model.getEstado());
+            logModel.setLatitud_log(model.getLatitud());
+            logModel.setLongitud_log(model.getLongitud());
+            logModel.setVelocidad_log(model.getVelocidad());
+            documentReference.collection("registros").add(logModel);
 
             documentReference = firebaseFirestore.collection("monitoreo").document(vehiculoModel.getId_vehiculo());
             documentReference.update("bloqueado", bloqueado_logs);

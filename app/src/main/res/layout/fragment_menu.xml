@@ -141,44 +141,6 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/cardPublicaciones"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_rowWeight="1"
-                android:layout_columnWeight="1"
-                android:layout_margin="12dp"
-                android:foreground="?selectableItemBackground"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="6dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal|center_vertical"
-                    android:orientation="vertical"
-                    android:padding="16dp"
-                    tools:ignore="UseCompoundDrawables">
-
-                    <ImageView
-                        android:layout_width="100sp"
-                        android:layout_height="50sp"
-                        android:layout_gravity="center"
-                        android:contentDescription="@string/descripcion"
-                        android:src="@mipmap/publicacion_128" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="@string/publicacionesCardViewText"
-                        android:textAlignment="center"
-                        android:textColor="#1D4C6A"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
                 android:id="@+id/cardSignUp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
