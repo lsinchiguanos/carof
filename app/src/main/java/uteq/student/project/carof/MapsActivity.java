@@ -88,8 +88,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public void onClick(View v) {
                 registerLogs(false);
-                cargarMapa();
-                recuperaLog();
             }
         });
     }
@@ -99,24 +97,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public void onClick(View v) {
                 registerLogs(true);
-                cargarMapa();
-                recuperaLog();
             }
         });
-    }
-
-    private void countDownTime() {
-        new CountDownTimer(5000, 1000) {
-            @Override
-            public void onTick(long millisUntilFinished) {
-                onMapReady(mMap);
-            }
-
-            @Override
-            public void onFinish() {
-
-            }
-        }.start();
     }
 
     @Override
@@ -156,10 +138,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             Toast.makeText(this, "Carro en movimiento, acción no ejecutable", Toast.LENGTH_LONG).show();
         } else {
             VehiculoModel vehiculoModel = (VehiculoModel) spinner.getSelectedItem();
+
             documentReference = firebaseFirestore.collection("monitoreo_log").document(vehiculoModel.getId_vehiculo());
             model.setBloqueado(bloqueado_logs);
             model.setFecha(Timestamp.now());
             documentReference.collection("registros").add(model);
+
+            documentReference = firebaseFirestore.collection("monitoreo").document(vehiculoModel.getId_vehiculo());
+            documentReference.update("bloqueado", bloqueado_logs);
+
             Toast.makeText(this, "Acción ejecutada", Toast.LENGTH_LONG).show();
         }
     }
