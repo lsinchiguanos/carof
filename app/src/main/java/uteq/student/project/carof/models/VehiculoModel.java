@@ -1,5 +1,6 @@
 package uteq.student.project.carof.models;
 
+import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FieldValue;
 
@@ -11,6 +12,7 @@ public class VehiculoModel {
     private String modelo;
     private String url;
     private String anio;
+    private Timestamp fecha;
     private String vehiculoCustom;
 
     public VehiculoModel(String id_vehiculo, String placa, String marca, String modelo, String url, String anio) {
@@ -76,6 +78,14 @@ public class VehiculoModel {
 
     public void setAnio(String anio) {
         this.anio = anio;
+    }
+
+    public Timestamp getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Timestamp fecha) {
+        this.fecha = fecha;
     }
 
     @Override

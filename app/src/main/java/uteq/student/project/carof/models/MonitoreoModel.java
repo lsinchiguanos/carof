@@ -1,5 +1,7 @@
 package uteq.student.project.carof.models;
 
+import com.google.firebase.Timestamp;
+
 public class MonitoreoModel {
 
     private String estado;
@@ -7,8 +9,20 @@ public class MonitoreoModel {
     private double longitud;
     private int velocidad;
     private boolean bloqueado;
+    private Timestamp fecha;
+    private String uishai4;
 
     public MonitoreoModel() {
+    }
+
+    public MonitoreoModel(String estado, double latitud, double longitud, int velocidad, boolean bloqueado, Timestamp fecha, String uishai4) {
+        this.estado = estado;
+        this.latitud = latitud;
+        this.longitud = longitud;
+        this.velocidad = velocidad;
+        this.bloqueado = bloqueado;
+        this.fecha = fecha;
+        this.uishai4 = uishai4;
     }
 
     public MonitoreoModel(String estado, double latitud, double longitud, int velocidad, boolean bloqueado) {
